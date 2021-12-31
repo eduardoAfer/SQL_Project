@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>Resultados da pesquisa: {% block title %}{{ search.expr }} {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  {% if not album %}
+  <b>Nenhum álbum encontrado para este género</b>
+  {% endif %}
+  <p><ul>
+    {% for alb in album %}      
+      <li><a href="/albums/{{ alb.IdDisc }}">{{ alb.Nome}} - {{ alb.Titulo }}</a></li>
+    {% endfor %}
+    </ul>
+  </p>
+{% endblock %}

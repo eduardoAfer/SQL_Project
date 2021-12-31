@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}{{ album.Titulo }} {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <h2>Informações sobre álbum</h2>
+  <p>
+    <b>ID: </b>{{ album.IdDisc }}
+  </p>
+  <p>
+    <b>Título: </b>{{ album.Titulo }} ({{ album.Formato }})
+  </p>
+  <p>
+    <b>Autor: </b><a href="/albums/searchbyaut/{{ album.Nome }}/">{{ album.Nome }}</a>
+  </p>
+  <p>
+    <b>Ano: </b>{{ album.AnoLançamento }}
+  </p>
+  <p>
+    <b>Duração: </b>{{ album.Duracao }} 
+  </p>
+  <p>
+    <b>Descrição: </b>{{ album.Descricao }} 
+  </p>
+  <p>
+    <b>Géneros: </b><ul>
+      {% for gen in genre %}      
+        <li><a href='/albums/searchbygen/{{ gen.Genero }}/'> {{ gen.Genero }} </a> </li>
+      {% endfor %}
+      </ul>
+  </p>
+  <p>
+    {% if not product %}
+      <b>Produto não registrado</b>
+    {% elif product.NumExemplares > 0 %}
+      <b>Disponível para compra!</b> 
+      <b>Valor: </b> €{{ product.Valor }} 
+    {% else %}
+      <b>Produto indisponível</b> 
+    {% endif %}
+  </p>
+{% endblock %}

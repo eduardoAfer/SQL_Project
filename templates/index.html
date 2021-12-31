@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Estatisticas sobre a BD</h2>
+<table>
+<tr>
+  <th>Items</th>
+  <th>Contagem</th>
+</tr>
+<tr>
+  <td>Produtos</td>
+  <td>{{ stats.products }}</td>
+</tr>
+<tr>
+  <td>Compras efetuadas</td>
+  <td>{{ stats.compras }}</td>
+</tr>
+<tr>
+  <td>Fornecedores</td>
+  <td>{{ stats.fornecedores }}</td>
+</tr>
+</table>
+
+<h3>Álbums</h3>
+<p>
+   <a href="/albums">Listar todos</a>
+</p>
+<p>Obter informação por ID:
+<form name="mid" action="javascript:window.open('/albums/'+document.forms['mid'].elements['id'].value,'_self')">
+   <input value="1" name="id" type="number" min="1"/><input type="submit" value="get"/>
+</form>
+</p>
+<p>Pesquisar por título:
+  <form name="asearch" action="javascript:window.open('/albums/search/'+document.forms['asearch'].elements['expr'].value,'_self')">
+    <input name="expr" id="expr" value="" required/>
+    <input type="submit" value="search"/>
+  </form>
+</p>
+<p>Pesquisar por artista:
+  <form name="asearchbyaut" action="javascript:window.open('/albums/searchbyaut/'+document.forms['asearchbyaut'].elements['expr'].value,'_self')">
+    <input name="expr" id="expr" value="" required/>
+    <input type="submit" value="search"/>
+  </form>
+</p>
+<p>Pesquisar por género:
+  <form name="asearchbygen" action="javascript:window.open('/albums/searchbygen/'+document.forms['asearchbygen'].elements['expr'].value,'_self')">
+    <select name="selectgenero" id="expr">
+      {% for genero in generos %}
+        <option value="{{ genero.Genero }}">{{ genero.Genero }}</option>
+      {% endfor %}
+      </select>
+    <input type="submit" value="search"/>
+  </form>
+</p>
+
+<h3>Pedidos do usuario</h3>
+<p>
+  <a href="/pedidos">Listar todos</a>
+</p>
+<p>
+  <form name="pedidoscliente" action="javascript:window.open('/pedidos/'+document.forms['pedidoscliente'].elements['mail'].value,'_self')">
+    E-mail do cliente:
+     <input value="joana47@gmail.com" name="mail"/>
+     <input type="submit" value="search"/>
+  </form>
+</p>
+
+<h3>Funcionários</h3>
+<p>
+   <a href="/funcionarios">Listar todos</a>
+</p>
+<p> Obter informação por ID:
+<form name="aid" action="javascript:window.open('/funcionarios/'+document.forms['aid'].elements['id'].value,'_self')">
+   <input value="1" name="id" type="number" min="1"/>
+   <input type="submit" value="get"/>
+</form>
+</p>
+  
+<p>Pesquisar por nome: 
+  <form name="fsearch" action="javascript:window.open('/funcionarios/searchfuncName/'+document.forms['fsearch'].elements['expr'].value,'_self')">
+    <input name="expr" id="expr" value="" required/>
+    <input type="submit" value="search"/>
+  </form>
+</p>
+
+
+{% endblock %}

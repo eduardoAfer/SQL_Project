@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>Resultados da pesquisa: {% block title %}{{ search.expr }} {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <p><ul>
+    {% for func in funcionarios %}      
+      <li><a href="/funcionario/{{ func.ID }}">{{ func.Nome }}</a></li>
+    {% endfor %}
+    </ul>
+  </p>
+{% endblock %}
